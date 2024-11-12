@@ -1,0 +1,1 @@
+ft_handleinfile(minishell, input, aux, i);

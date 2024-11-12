@@ -65,10 +65,11 @@ t_shell		*ft_prepare_values(char **envp)
 	t_shell		*minishell;
 
 	minishell = malloc(sizeof(t_shell));
+	minishell->token = malloc(sizeof(t_token *));
 	if (minishell == NULL)
 		return (NULL);
 	minishell->env = malloc(sizeof(t_env *) * ft_count_env(envp));
 	if (ft_prep_env(envp, minishell) == -1)
-		return (ft_mass_free(minishell, NULL, NULL, NULL));
+		return (ft_mass_free(minishell, minishell->token, NULL, NULL));
 	return (minishell);
 }
