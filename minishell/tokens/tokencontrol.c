@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 14:18:18 by juan-ant          #+#    #+#             */
-/*   Updated: 2024/11/06 10:08:01 by juan-ant         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:24:35 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_token	*ft_tokenadvance(t_token *lst, int advance)
 	{
 		if (lst->next != NULL)
 			lst = lst->next;
-			advance --;
+		-advance --;
 	}
 	return (lst);
 }

@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:41:23 by juan-ant          #+#    #+#             */
-/*   Updated: 2024/11/09 10:16:59 by juan-ant         ###   ########.fr       */
+/*   Updated: 2024/12/03 13:08:23 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,11 @@ int	ft_handle_token(t_shell *minishell, char *input, char *aux, int i)
 	ft_handlebasic(minishell, input, aux, i);
 	if (*input == '\0')
 		return (0);
-	if (*input == 39)
-		ft_handlesingles(minishell, input, aux, i);
-	if (*input == 34)
-		ft_handledoubles(minishell, input, aux, i);
 	if (*input == '<')
 		ft_handleinfile(minishell, input, aux, i);
-	if (*input == '>')
+	else if (*input == '>')
 		ft_handleoutfile(minishell, input, aux, i);
-	if (*input == '|')
+	else if (*input == '|')
 		ft_handlepipeline(minishell, input, aux, i);
 }
 

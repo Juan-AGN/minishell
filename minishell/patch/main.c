@@ -18,6 +18,8 @@ int main(int argc, char **argv, char **envp)
 	char	*cwd = NULL;
 	t_shell	*minishell;
 
+	if(!envp[0])
+		return 1;
 /* hay que tener en cuenta que tendriamos que imprimir tambien el nombre de
 usuario y de la maquina como lo hace la prompt original para eso hay que
 coger variables del PATH y otras cosas, ademas hay que ver cuando se imprime
@@ -53,7 +55,9 @@ el $ y cuando el # cuando este en modo administrador, esto es solo una aprox*/
 			add_history(input);
 		else
 			printf("");
-		printf("%s\n", ft_plstsearch(minishell->env[0], input));
+		printf("%s\n", ft_handleplain(minishell, input, NULL));
+		printf("%s\n", ft_handledoubles(minishell, input, NULL));
+		printf("%s\n", ft_handlesingles(input));
 		free(input);
 		free(cwd);
 	}

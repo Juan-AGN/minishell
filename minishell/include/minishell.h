@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:57:54 by juan-ant          #+#    #+#             */
-/*   Updated: 2024/11/08 15:53:34 by juan-ant         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:01:09 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ typedef struct t_env
 
 typedef struct t_token
 {
-	char			*type;
-	char			*content;
-	struct t_token	*param;
-	struct t_token	*next;
-	struct t_token	*child;
+	char			*type; // COMMAND, PARAMETER, PIPELINE, INFILE
+	char			*content; // CD      -a          |        <
+	struct t_token	*param; //            x
+	struct t_token	*next; //    x                   x
+	struct t_token	*child; //                                x 
 }	t_token;
 
 //start
@@ -83,7 +83,7 @@ int			ft_specialchar_if(char c);
 //end miscelanious
 
 //token preparation
-int	ft_handlebasic(t_shell *minishell, char *input, char *aux, int i)
+int	ft_handlebasic(t_shell *minishell, char *input, char *aux, int i);
 //end token preparation
 
 //tokens list control
@@ -101,5 +101,23 @@ void		ft_tokenadd_back(t_token **lst, t_token *new);
 //string manip and aux functions
 char		*ft_strndup(const char *s1, int n);
 //end string mip and aux functions
+
+//double ""
+char	*ft_handledoubles(t_shell *minishell, char *str, char *tojoin);
+//end of double ""
+
+//single ''
+char	*ft_handlesingles(char *str);
+//end of single ''
+
+//esp envs
+char	*ft_strjoinenv(t_shell *minishell, char *tojoin, char *env);
+
+int		ft_return_lenght(char *str);
+//end esp envs
+
+//plain text
+char	*ft_handleplain(t_shell *minishell, char *str, char *tojoin);
+//end plain text
 
 #endif
