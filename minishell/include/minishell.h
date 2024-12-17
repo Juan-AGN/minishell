@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:57:54 by juan-ant          #+#    #+#             */
-/*   Updated: 2024/12/10 17:01:09 by juan-ant         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:04:49 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@
 typedef struct t_shell
 {
 	struct t_env	**env;
-	struct t_token	**token;
-	struct t_token	*current_token;
+	struct t_token	*token;
 	int     		pipes;
 	int				commands;
 	int     		command_assign_aux;
@@ -43,11 +42,10 @@ typedef struct t_env
 
 typedef struct t_token
 {
-	char			*type; // COMMAND, PARAMETER, PIPELINE, INFILE
-	char			*content; // CD      -a          |        <
-	struct t_token	*param; //            x
-	struct t_token	*next; //    x                   x
-	struct t_token	*child; //                                x 
+	char			*command;
+	char			**params;
+	struct t_token	**infiles;
+	struct t_token	**outfiles;
 }	t_token;
 
 //start
@@ -83,20 +81,8 @@ int			ft_specialchar_if(char c);
 //end miscelanious
 
 //token preparation
-int	ft_handlebasic(t_shell *minishell, char *input, char *aux, int i);
+int ft_maintoken(t_shell *minishell, char *input);
 //end token preparation
-
-//tokens list control
-int			ft_tokensize(t_token *lst);
-
-t_token		*ft_tokentnew(char *type, char *content, char *child);
-
-t_token		*ft_tokenlast(t_token *lst, int mode);
-
-t_token		*ft_tokenadvance(t_token *lst, int advance);
-
-void		ft_tokenadd_back(t_token **lst, t_token *new);
-//end token list control
 
 //string manip and aux functions
 char		*ft_strndup(const char *s1, int n);

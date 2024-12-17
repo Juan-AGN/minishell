@@ -6,7 +6,7 @@
 #    By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/13 16:34:55 by juan-ant          #+#    #+#              #
-#    Updated: 2024/12/10 17:00:48 by juan-ant         ###   ########.fr        #
+#    Updated: 2024/12/16 16:05:45 by juan-ant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ BONUS_NAME =
 
 NAME = minishell
 
-FILES = patch/main.c patch/shell_preparation.c list/lstcontrol.c list/lstcontrol_2.c aux/free_mem.c tokens/special_chars/doublequotes.c tokens/special_chars/singlequotes.c tokens/special_chars/handleplain.c
+FILES = patch/main.c patch/shell_preparation.c list/lstcontrol.c list/lstcontrol_2.c aux/free_mem.c tokens/maintoken.c tokens/special_chars/singlequotes.c tokens/special_chars/doublequotes.c tokens/special_chars/handleplain.c
 
 OBJ = $(FILES:%.c=%.o)
 

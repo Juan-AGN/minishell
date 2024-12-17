@@ -55,9 +55,10 @@ el $ y cuando el # cuando este en modo administrador, esto es solo una aprox*/
 			add_history(input);
 		else
 			printf("");
-		printf("%s\n", ft_handleplain(minishell, input, NULL));
-		printf("%s\n", ft_handledoubles(minishell, input, NULL));
-		printf("%s\n", ft_handlesingles(input));
+		ft_maintoken(minishell, input);
+	//	printf("%s\n", ft_handleplain(minishell, input, NULL));
+	//	printf("%s\n", ft_handledoubles(minishell, input, NULL));
+	//	printf("%s\n", ft_handlesingles(input));
 		free(input);
 		free(cwd);
 	}

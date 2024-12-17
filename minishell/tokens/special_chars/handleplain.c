@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:39:23 by juan-ant          #+#    #+#             */
-/*   Updated: 2024/12/10 17:03:52 by juan-ant         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:11:27 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ char	*ft_joiner(t_shell *minishell, char *str, char *tojoin)
 
 int		ft_conditional_plain(char *str, int i)
 {
-	if (str[i] == 34 || str[i] <= 32 || str[i] == '$' || str[i] == 39)
+	if (str[i] == 34 || str[i] <= 32 || str[i] == '$' || str[i] == 39
+		|| str[i] == '>' || str[i] == '<' || str[i] == '|')
 	{
 		if (str[i] == '$')
 		{
@@ -82,8 +83,12 @@ char	*ft_plain_cases(t_shell *minishell, char *str, char *tojoin)
 			i ++;
 	}
 	else
+	{
 		while (str[i] != str[0] && str[i] != '\0')
 			i ++;
+		if (str[i] != '\0')
+			i ++;
+	}
 	tojoin = ft_handleplain(minishell, &str[i], res);
 	return (tojoin);
 
