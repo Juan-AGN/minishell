@@ -36,6 +36,7 @@ el $ y cuando el # cuando este en modo administrador, esto es solo una aprox*/
 	while (1)
 	{
 		cwd = getcwd(NULL, 0); //determina sola la memoria
+		cwd = ft_strjoin(cwd, "~$: ");
 		if (cwd != NULL)
 			input = readline(cwd);
 		else
@@ -55,6 +56,7 @@ el $ y cuando el # cuando este en modo administrador, esto es solo una aprox*/
 			add_history(input);
 		else
 			printf("");
+		builtin_cd(&input);
 		ft_maintoken(minishell, input);
 	//	printf("%s\n", ft_handleplain(minishell, input, NULL));
 	//	printf("%s\n", ft_handledoubles(minishell, input, NULL));
@@ -65,3 +67,5 @@ el $ y cuando el # cuando este en modo administrador, esto es solo una aprox*/
 	rl_clear_history();
 	return 0;
 }
+
+

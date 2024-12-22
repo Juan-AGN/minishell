@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:57:54 by juan-ant          #+#    #+#             */
-/*   Updated: 2024/12/16 16:04:49 by juan-ant         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:56:37 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,15 @@ int			ft_specialchar_if(char c);
 
 //token preparation
 int ft_maintoken(t_shell *minishell, char *input);
+//	aux
+int	ft_comands(char *input);
+
+int	ft_count_token(char *input);
+
+int	ft_specialchar_if(char c);
+
+int	ft_spcharnospace_if(char c);
+//	end aux
 //end token preparation
 
 //string manip and aux functions
