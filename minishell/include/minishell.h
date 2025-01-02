@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:57:54 by juan-ant          #+#    #+#             */
-/*   Updated: 2024/12/19 13:56:37 by juan-ant         ###   ########.fr       */
+/*   Updated: 2025/01/02 19:53:43 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct t_shell
 {
 	struct t_env	**env;
 	struct t_token	*token;
+	int				ncomands;
 	int     		pipes;
 	int				commands;
 	int     		command_assign_aux;
@@ -43,9 +44,10 @@ typedef struct t_env
 typedef struct t_token
 {
 	char			*command;
+	int				nparams;
 	char			**params;
-	struct t_token	**infiles;
-	struct t_token	**outfiles;
+	char			**infiles;
+	char			**outfiles;
 }	t_token;
 
 //start
@@ -89,7 +91,9 @@ int	ft_count_token(char *input);
 
 int	ft_specialchar_if(char c);
 
-int	ft_spcharnospace_if(char c);
+int	ft_spcharparams_if(char c);
+
+int	ft_params(char *input);
 //	end aux
 //end token preparation
 

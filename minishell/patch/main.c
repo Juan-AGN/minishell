@@ -56,8 +56,20 @@ el $ y cuando el # cuando este en modo administrador, esto es solo una aprox*/
 			add_history(input);
 		else
 			printf("");
-		builtin_cd(&input);
 		ft_maintoken(minishell, input);
+		int o = 0;
+		int u = 0;
+		while (o != minishell->ncomands)
+		{
+			printf("COMAND %i: %s\n", o, minishell->token[o].command);
+			while (u != minishell->token[o].nparams)
+			{
+				printf("	COMAND %i PARAM %i: %s\n", o, u, minishell->token[o].params[u]);
+				u ++;
+			}
+			u = 0;
+			o ++;
+		}
 	//	printf("%s\n", ft_handleplain(minishell, input, NULL));
 	//	printf("%s\n", ft_handledoubles(minishell, input, NULL));
 	//	printf("%s\n", ft_handlesingles(input));

@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:41:23 by juan-ant          #+#    #+#             */
-/*   Updated: 2024/12/19 13:56:35 by juan-ant         ###   ########.fr       */
+/*   Updated: 2025/01/02 19:25:46 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_count_inout(char *input)
 	i = 0;
 	while (input[i] == '<' || input[i] == '>')
 		i ++;
-	while (input[i] <= 32 && input[i] >= 32)
+	while (input[i] <= 32 && input[i] >= 1)
 		i ++;
 	i += ft_count_token(&input[i]);
 	return (i);
@@ -57,19 +57,17 @@ int	ft_comands(char *input)
 
 	i = 0;
 	u = 0;
-	if (input[i] == '|')
-		u ++;
 	while (input[i] != '\0')
 	{
-		if (input[i] == '"')
-			while (input[i] != '"' && input[i] != '\0')
-				i ++;
-		else if (input[i] == 39)
-			while (input[i] != 39 && input[i] != '\0')
-				i ++;
+		while (input[i] <+ 32 && input[i] >= 1)
+			i ++;
+		i += ft_count_token(&input[i]);
+		i += ft_count_inout(&input[i]);
 		if (input[i] == '|')
+		{
 			u ++;
-		i ++; 
+			i ++;
+		}
 	}
 	return (u + 1);
 }
@@ -85,17 +83,11 @@ int	ft_params(char *input)
 	{
 		while (input[i] <= 32 && input[i] >= 1)
 			i ++;
+		if (ft_spcharparams_if(input[i]) == 0)
+			u ++;
+		i += ft_count_token(&input[i]);
 		if (input[i] == '<' || input[i] == '>')
 			i += ft_count_inout(&input[i]);
-		if (input[i - 1] == '"')
-			while (input[i] != '"' && input[i] != '\0')
-				i ++;
-		else if (input[i] == '"')
-			while (input[i] != 39 && input[i] != '\0')
-				i ++;
-		i ++;
-		if (ft_spcharnospace_if(input[i] == 1))
-			u ++;
 	}
 	return (u);
 }
