@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:57:54 by juan-ant          #+#    #+#             */
-/*   Updated: 2025/01/02 19:53:43 by juan-ant         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:39:26 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ typedef struct t_shell
 	struct t_env	**env;
 	struct t_token	*token;
 	int				ncomands;
-	int     		pipes;
-	int				commands;
-	int     		command_assign_aux;
-	int				counter;
 }	t_shell;
 
 typedef struct t_env
@@ -45,6 +41,8 @@ typedef struct t_token
 {
 	char			*command;
 	int				nparams;
+	int				ninfiles;
+	int				noutfiles;
 	char			**params;
 	char			**infiles;
 	char			**outfiles;
@@ -74,6 +72,8 @@ char		*ft_plstsearch(t_env *lst, char *name);
 t_shell		*ft_mass_free(void *value1, void *value2, void *value3, void *value4);
 
 int			ft_plstclear(t_env **lst);
+
+void		ft_free_tokens(t_shell *minishell, t_token *token);
 //end free
 
 //miscelanious
@@ -86,6 +86,10 @@ int			ft_specialchar_if(char c);
 int ft_maintoken(t_shell *minishell, char *input);
 //	aux
 int	ft_comands(char *input);
+
+int	ft_count_inout(char *input);
+
+int	ft_inoutcounter(char *input, char tocount);
 
 int	ft_count_token(char *input);
 
@@ -108,6 +112,14 @@ char	*ft_handledoubles(t_shell *minishell, char *str, char *tojoin);
 //single ''
 char	*ft_handlesingles(char *str);
 //end of single ''
+
+//handle infiles
+char    *ft_handle_inf(t_shell  *minishell, char *input);
+//end handle infiles
+
+//handle infiles
+char    *ft_handle_out(t_shell  *minishell, char *input);
+//end handle infiles
 
 //esp envs
 char	*ft_strjoinenv(t_shell *minishell, char *tojoin, char *env);

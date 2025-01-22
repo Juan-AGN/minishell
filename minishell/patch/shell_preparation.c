@@ -48,7 +48,7 @@ char	*ft_get_env(char *str)
 	i = ft_strlen(str) - ft_strlen(ft_strchr(str, '=') - 1);
 	if (i == -1)
 		return (NULL);
-	toreturn = malloc(i * sizeof(char));
+	toreturn = malloc((i + 1) * sizeof(char));
 	if (toreturn == NULL)
 		return (NULL);
 	toreturn[i] = '\0';
@@ -65,7 +65,6 @@ t_shell		*ft_prepare_values(char **envp)
 	t_shell		*minishell;
 
 	minishell = malloc(sizeof(t_shell));
-	minishell->token = malloc(sizeof(t_token *));
 	if (minishell == NULL)
 		return (NULL);
 	minishell->env = malloc(sizeof(t_env *) * ft_count_env(envp));

@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:31:23 by juan-ant          #+#    #+#             */
-/*   Updated: 2025/01/02 19:29:04 by juan-ant         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:36:16 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char    *ft_joinenv_doubles(t_shell *minishell, char *str, char *tojoin)
 	char	*joined;
 
 	i = ft_return_lenght(str);
-	env = malloc(sizeof(char) * i);
+	env = malloc(sizeof(char) * (i + 1));
 	if (env == NULL)
 		return (NULL);
 	ft_strlcpy(env, str, i + 1);
@@ -83,7 +83,7 @@ char	*ft_handledoubles(t_shell *minishell, char *str, char *tojoin)
 	i = 0;
 	while (ft_conditional_double(str, i) != 1)
 		i ++;
-	current = malloc(sizeof(char) * i);
+	current = malloc(sizeof(char) * (i + 1));
 	if (current == NULL)
 		return (NULL);
 	ft_strlcpy(current, str, i + 1);

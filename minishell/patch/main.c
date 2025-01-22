@@ -56,28 +56,56 @@ el $ y cuando el # cuando este en modo administrador, esto es solo una aprox*/
 			add_history(input);
 		else
 			printf("");
-		ft_maintoken(minishell, input);
+		if (input[0] != 'e' && input[1] != 'x')
+		{
+			ft_maintoken(minishell, input);
 		int o = 0;
 		int u = 0;
-		while (o != minishell->ncomands)
+		int e = 0;
+		int ou = 0;
+		if (minishell->token != NULL)
 		{
-			printf("COMAND %i: %s\n", o, minishell->token[o].command);
-			while (u != minishell->token[o].nparams)
+			while (o != minishell->ncomands)
 			{
-				printf("	COMAND %i PARAM %i: %s\n", o, u, minishell->token[o].params[u]);
-				u ++;
+				printf("COMAND %i: %s\n", o, minishell->token[o].command);
+				while (u != minishell->token[o].nparams)
+				{
+					printf("	COMAND %i PARAM %i: %s\n", o, u, minishell->token[o].params[u]);
+					u ++;
+				}
+				if (minishell->token[o].infiles != NULL)
+				{
+					while (e != minishell->token[o].ninfiles)
+					{
+						printf("<%i	COMAND %i INFILE %i: %s\n", minishell->token[o].ninfiles, o, e, minishell->token[o].infiles[e]);
+						e ++;
+					}
+				}
+				if (minishell->token[o].outfiles != NULL)
+				{
+					while (ou != minishell->token[o].noutfiles)
+					{
+						printf(">%i	COMAND %i OUTFILE %i: %s\n", minishell->token[o].noutfiles, o, ou, minishell->token[o].outfiles[ou]);
+						ou ++;
+					}
+				}
+				ou = 0;
+				e = 0;
+				u = 0;
+				o ++;
 			}
-			u = 0;
-			o ++;
+		}
 		}
 	//	printf("%s\n", ft_handleplain(minishell, input, NULL));
 	//	printf("%s\n", ft_handledoubles(minishell, input, NULL));
 	//	printf("%s\n", ft_handlesingles(input));
+		ft_free_tokens(minishell, minishell->token);
 		free(input);
 		free(cwd);
 	}
+	free(minishell->env);
+	free(minishell);
+	ft_plstclear(minishell->env);
 	rl_clear_history();
 	return 0;
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:41:23 by juan-ant          #+#    #+#             */
-/*   Updated: 2025/01/02 19:25:46 by juan-ant         ###   ########.fr       */
+/*   Updated: 2025/01/07 16:52:07 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,28 @@ int	ft_params(char *input)
 		i += ft_count_token(&input[i]);
 		if (input[i] == '<' || input[i] == '>')
 			i += ft_count_inout(&input[i]);
+	}
+	return (u);
+}
+
+int	ft_inoutcounter(char *input, char tocount)
+{
+	int	i;
+	int	u;
+
+	i = 0;
+	u = 0;
+	while (input[i] != '|' && input[i] != '\0')
+	{
+		while (input[i] <= 32 && input[i] >= 1)
+			i ++;
+		i += ft_count_token(&input[i]);
+		if (input[i] == '<' || input[i] == '>')
+		{
+			if (input[i] == tocount)
+				u ++;
+			i += ft_count_inout(&input[i]);
+		}
 	}
 	return (u);
 }
