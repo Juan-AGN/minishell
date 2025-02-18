@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 11:57:54 by juan-ant          #+#    #+#             */
-/*   Updated: 2025/01/20 17:39:26 by juan-ant         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:31:56 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,10 @@ int	ft_specialchar_if(char c);
 int	ft_spcharparams_if(char c);
 
 int	ft_params(char *input);
+
+void ft_aux_in(t_shell *minishell, t_token *token, char *input, int i);
+
+void ft_aux_out(t_shell *minishell, t_token *token, char *input, int i);
 //	end aux
 //end token preparation
 

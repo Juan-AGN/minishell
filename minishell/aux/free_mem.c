@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:08:54 by juan-ant          #+#    #+#             */
-/*   Updated: 2025/01/21 15:29:57 by juan-ant         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:39:17 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ int	ft_plstclear(t_env **lst)
 	while (n > 0)
 	{
 		aux = (*lst)->next;
-		if (lst[0]->name != NULL)
+		if (lst[0]->name != NULL && lst[0] != NULL)
 			free(lst[0]->name);
-		if (lst[0]->content != NULL)
+		if (lst[0]->content != NULL && lst[0] != NULL)
 			free(lst[0]->content);
-		free(*lst);
+		if (lst[0] != NULL)
+			free(*lst);
 		*lst = aux;
 		n --;
 	}

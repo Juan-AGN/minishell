@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:31:23 by juan-ant          #+#    #+#             */
-/*   Updated: 2025/01/20 17:36:16 by juan-ant         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:46:06 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,23 @@ char	*ft_strjoinenv(t_shell *minishell, char *tojoin, char *env)
 	return (ft_strjoin(tojoin, env_content));
 }
 
-int		ft_return_lenght(char *str)
+int	ft_return_lenght(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str[i] == '$')
 		return (i + 1);
-	while (str[i] != 34 && str[i] != '\0' && str[i] != '$' && str[i] != 39 
-			&& str[i] != ' ' && str[i] != '|' && str[i] != '<'
-			&& str[i] != '>')
+	while (str[i] != 34 && str[i] != '\0' && str[i] != '$' && str[i] != 39
+		&& str[i] != ' ' && str[i] != '|' && str[i] != '<'
+		&& str[i] != '>')
 	{
 		i ++;
 	}
 	return (i);
 }
 
-char    *ft_joinenv_doubles(t_shell *minishell, char *str, char *tojoin)
+char	*ft_joinenv_doubles(t_shell *minishell, char *str, char *tojoin)
 {
 	int		i;
 	char	*env;
@@ -60,7 +60,7 @@ char    *ft_joinenv_doubles(t_shell *minishell, char *str, char *tojoin)
 	return (joined);
 }
 
-int		ft_conditional_double(char *str, int i)
+int	ft_conditional_double(char *str, int i)
 {
 	if (str[i] == 34 || str[i] == '\0' || str[i] == '$')
 	{

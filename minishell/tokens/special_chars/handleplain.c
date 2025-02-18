@@ -6,13 +6,13 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:39:23 by juan-ant          #+#    #+#             */
-/*   Updated: 2025/01/21 15:48:50 by juan-ant         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:51:44 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char    *ft_joinenv_plain(t_shell *minishell, char *str, char *tojoin)
+char	*ft_joinenv_plain(t_shell *minishell, char *str, char *tojoin)
 {
 	int		i;
 	char	*env;
@@ -45,7 +45,7 @@ char	*ft_joiner(t_shell *minishell, char *str, char *tojoin)
 	if (res == NULL)
 	{
 		free(tojoin);
-		return(NULL);
+		return (NULL);
 	}
 	joined = ft_strjoin(tojoin, res);
 	free(tojoin);
@@ -53,7 +53,7 @@ char	*ft_joiner(t_shell *minishell, char *str, char *tojoin)
 	return (joined);
 }
 
-int		ft_conditional_plain(char *str, int i)
+int	ft_conditional_plain(char *str, int i)
 {
 	if (str[i] == 34 || str[i] <= 32 || str[i] == '$' || str[i] == 39
 		|| str[i] == '>' || str[i] == '<' || str[i] == '|')
@@ -70,8 +70,8 @@ int		ft_conditional_plain(char *str, int i)
 
 char	*ft_plain_cases(t_shell *minishell, char *str, char *tojoin)
 {
-	int	i;
-	char *res;
+	int		i;
+	char	*res;
 
 	i = 1;
 	res = ft_joiner(minishell, str, tojoin);
@@ -92,7 +92,6 @@ char	*ft_plain_cases(t_shell *minishell, char *str, char *tojoin)
 	tojoin = ft_handleplain(minishell, &str[i], res);
 	free(res);
 	return (tojoin);
-
 }
 
 char	*ft_handleplain(t_shell *minishell, char *str, char *tojoin)

@@ -103,9 +103,9 @@ el $ y cuando el # cuando este en modo administrador, esto es solo una aprox*/
 		free(input);
 		free(cwd);
 	}
+	ft_plstclear(minishell->env);
 	free(minishell->env);
 	free(minishell);
-	ft_plstclear(minishell->env);
 	rl_clear_history();
 	return 0;
 }

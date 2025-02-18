@@ -1,4 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shell_preparation.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/29 16:23:02 by juan-ant          #+#    #+#             */
+/*   Updated: 2025/01/29 16:30:21 by juan-ant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
+
+t_env	*ft_dup_env(char *name) 
+{
+	char	*raw_content;
+	char	*dupped;
+	t_env	*list;
+
+	raw_content = getenv(name);
+	if (raw_content != NULL)
+	{
+		dupped = ft_strndup(raw_content, ft_strlen(raw_content));
+		if (dupped == NULL)
+			return (NULL);
+	}
+	else
+		dupped = NULL;
+	list = ft_plstnew(name, dupped);
+	if (list == NULL)
+	{
+		free(name);
+		free(dupped);
+		return (NULL);
+	}
+	return (list);
+}
 
 int			ft_count_env(char **envp)
 {
@@ -23,7 +60,7 @@ int	ft_prep_env(char **envp, t_shell *minishell)
 	name = ft_get_env(*envp);
 	if (name == NULL)
 		return (-1);
-	minishell->env[0] = ft_plstnew(name, getenv(name));
+	minishell->env[0] = ft_dup_env(name);
 	if (minishell->env[0] == NULL)
 		return (ft_plstclear(minishell->env));
 	while (envp[i] != NULL)
@@ -31,7 +68,7 @@ int	ft_prep_env(char **envp, t_shell *minishell)
 		name = ft_get_env(envp[i]);
 		if (name == NULL)
 			return (-1);
-		aux = ft_plstnew(name, getenv(name));
+		aux = ft_dup_env(name);
 		if (aux == NULL)
 			return (ft_plstclear(minishell->env));
 		ft_plstadd_back(minishell->env, aux);

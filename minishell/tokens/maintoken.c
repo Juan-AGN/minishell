@@ -6,58 +6,24 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:41:23 by juan-ant          #+#    #+#             */
-/*   Updated: 2025/01/21 16:15:10 by juan-ant         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:41:25 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	**ft_alloc_inout(int i, t_token *token, int mod)
-{
-	char	**toret;
-	int		u;
-
-	u = 0;
-	if (mod == 1)
-		token->ninfiles = i;
-	else
-		token->noutfiles = i;
-	toret = malloc(sizeof(char **) * i);
-	while (u != i)
-	{
-		toret[u] = NULL;
-		u ++;
-	}
-	return (toret);
-}
-
 int	ft_in_out(t_shell *minishell, t_token *token, char *input, int i)
 {
-	int	u;
-
-	u = 0;
 	if (input[i] == '<')
-	{
-		if (token->infiles == NULL)
-			token->infiles = ft_alloc_inout(ft_inoutcounter(&input[i], '<'), token, 1);
-		while (token->ninfiles - ft_inoutcounter(&input[i], '<') > u)
-			u ++;
-		token->infiles[u] = ft_handle_inf(minishell, &input[i]);
-	}
+		ft_aux_in(minishell, token, input, i);
 	else if (input[i] == '>')
-	{
-		if (token->outfiles == NULL)
-			token->outfiles = ft_alloc_inout(ft_inoutcounter(&input[i], '>'), token, 2);
-		while (token->noutfiles - ft_inoutcounter(&input[i], '>') > u)
-			u ++;
-		token->outfiles[u] = ft_handle_out(minishell, &input[i]);
-	}
+		ft_aux_out(minishell, token, input, i);
 	return (ft_count_inout(&input[i]) + i);
 }
 
-int ft_createcommand(t_shell *minishell, t_token *token, char *input, int i)
+int	ft_createcommand(t_shell *minishell, t_token *token, char *input, int i)
 {
-	int u;
+	int	u;
 
 	u = 0;
 	if (token->command == NULL)
@@ -107,10 +73,10 @@ int	ft_alloctoken(int i, t_shell *minishell)
 	return (1);
 }
 
-int ft_maintoken(t_shell *minishell, char *input)
+int	ft_maintoken(t_shell *minishell, char *input)
 {
 	int	i;
-	int u;
+	int	u;
 
 	i = 0;
 	u = 0;
@@ -126,12 +92,12 @@ int ft_maintoken(t_shell *minishell, char *input)
 		if (input[i] == '|')
 		{
 			if (minishell->token[u].command == NULL)
-				return (ft_printf("bash: syntax error near unexpected token '%c'\n", input[i]));
+				return (ft_printf("Error\n"));
 			u ++;
 			i ++;
 		}
 	}
 	if (minishell->token[u].command == NULL)
-		return (ft_printf("bash: syntax error near unexpected token `newline'\n"));
+		return (ft_printf("error\n"));
 	return (0);
 }

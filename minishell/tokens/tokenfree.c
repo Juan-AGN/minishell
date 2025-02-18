@@ -6,7 +6,7 @@
 /*   By: juan-ant <juan-ant@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:35:38 by juan-ant          #+#    #+#             */
-/*   Updated: 2025/01/22 16:45:08 by juan-ant         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:36:48 by juan-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_free_params(int nparams, t_token *token)
 
 void	ft_free_in(int ninfiles, t_token *token)
 {
-	printf("$%i\n", ninfiles);
 	while (ninfiles != -1)
 	{
 		if (token->infiles[ninfiles] != NULL)
